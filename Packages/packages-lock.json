@@ -105,6 +105,12 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.veriorpies.parrelsync": {
+      "version": "file:E:/Downloads/ParrelSync-1.5.0/ParrelSync-1.5.0/ParrelSync",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
