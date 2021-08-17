@@ -188,18 +188,28 @@ public class EnteredTheScene : NetworkBehaviour
         foreach (GameObject player in players)
         {
             // for making sure that client has updated value of ServerRPC variable change for player that's changing rooms
-            if((ushort)hitUniqueID == player.GetComponent<PlayerData>().ClientID.Value ){
+            if ((ushort)hitUniqueID == player.GetComponent<PlayerData>().ClientID.Value)
+            {
                 bool endLoop = false;
-                while (!endLoop){
-                    if (player.GetComponent<PlayerData>().Room.Value.Equals(RoomName)){
+                while (!endLoop)
+                {
+                    if (player.GetComponent<PlayerData>().Room.Value.Equals(RoomName))
+                    {
                         endLoop = true;
                     }
-                    else{
+                    else
+                    {
                         yield return null;
                     }
                 }
             }
+        }
 
+        // if it's the client that hit the door; udpdates current room incase it was changed
+        currentRoom = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.GetComponent<PlayerData>().Room.Value;
+
+        foreach (GameObject player in players)
+        {
             // now that all variables are synched, sees which players are visible/invisible to client 
             MeshRenderer[] Renderers = player.GetComponentsInChildren<MeshRenderer>();
             Collider[] Colliders = player.GetComponentsInChildren<Collider>();
