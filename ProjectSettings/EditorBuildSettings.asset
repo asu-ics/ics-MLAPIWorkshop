@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 57bce0540ee7d37419791060622a6dde
+  - enabled: 1
+    path: Assets/Scenes/GreenRoom.unity
+    guid: 38d6f0c09b3dd40a0911b14dddd01c42
+  - enabled: 1
+    path: Assets/Scenes/BlueRoom.unity
+    guid: d15c2bd1b67d042e4b905f31102e614b
   m_configObjects: {}
