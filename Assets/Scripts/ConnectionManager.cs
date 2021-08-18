@@ -9,11 +9,13 @@ using Photon.Realtime;
 public class ConnectionManager : MonoBehaviour
 {
     string room;
+    public string username;
     public GameObject connectionPanel;
      
     void Start()
     {
         room = "default";
+        username = "guest";
     }
 
 
@@ -80,5 +82,10 @@ public class ConnectionManager : MonoBehaviour
 
     }
 
-    
+    public void ChangeUsername(string input_username)
+    {
+        username = input_username;
+    }
+
+
 }
