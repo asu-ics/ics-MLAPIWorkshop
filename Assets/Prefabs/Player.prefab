@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RightHand: {fileID: 5685544396901073626}
   Ball: {fileID: 3929754654305199224, guid: 6095c91b6ef8c16ff837ebdc578f4dcb, type: 3}
-  playercamera: {fileID: 0}
+  playercamera: {fileID: 6225877942427081259}
   equipped:
     m_InternalValue: 0
 --- !u!114 &1981286815486988043
@@ -475,7 +475,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5243595088544016661}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3492332, y: -0.33101308, z: 0.4593258}
+  m_LocalPosition: {x: 0.224, y: -0.369, z: 1.009}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6172953345490800704}
