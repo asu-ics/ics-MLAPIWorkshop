@@ -106,10 +106,11 @@
       }
     },
     "com.veriorpies.parrelsync": {
-      "version": "file:E:/Downloads/ParrelSync-1.5.0/ParrelSync-1.5.0/ParrelSync",
+      "version": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "bb3d5067e49e403d8b8ba15c036d313b4dd2c696"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
