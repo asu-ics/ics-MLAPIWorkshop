@@ -37,11 +37,12 @@ public class PlayerMovement : NetworkBehaviour
     private void Start() //Make sure the local player's camera is the one that is active 
     {
         cameraTransform = GetComponentInChildren<Camera>().transform;
-        GameObject mainCam = GameObject.FindGameObjectWithTag("MainCamera");
-        mainCam.GetComponent<AudioListener>().enabled = false; //disable the menu camera's audio listener once the player is instantiated. 
-
+        
         if (IsLocalPlayer)//check if this belongs to the local player's instance
         {
+            GameObject mainCam = GameObject.FindGameObjectWithTag("MainCamera");
+            mainCam.GetComponent<AudioListener>().enabled = false; //disable the menu camera's audio listener once the player is instantiated. 
+
             cc = GetComponent<CharacterController>();
             GameObject usernameField = GameObject.FindGameObjectWithTag("UsernameField");
             username = usernameField.GetComponent<ConnectionManager>().username;

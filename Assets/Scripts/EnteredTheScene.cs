@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class EnteredTheScene : NetworkBehaviour
 {
+    //___________________________ FOR UPDATING TEXTBOX NAMES ____________________________
+
     // when a new client enters the game, updates htier textboxes on local client's side
     public void UpdateNames()
     {
@@ -47,6 +49,8 @@ public class EnteredTheScene : NetworkBehaviour
         }
     }
 
+    //___________________________ FOR CHANGING SCENES ____________________________
+
     public void GoToNewScene(Collider other, string RoomName)
     {
         // this should only be ran on the client side so this if statement should always run
@@ -62,21 +66,24 @@ public class EnteredTheScene : NetworkBehaviour
     {
         // 3 situations -> from lobby to new room, from new room to new room, from new room to lobby
         // situation 1: lobby
-        Scene pastScene = SceneManager.GetActiveScene();
+        Scene pastScene = SceneManager.GetSceneByName(other.GetComponent<PlayerData>().GetCurrentRoom()); 
         if (pastScene.name != "Lobby")
         {
             // for client going from new room to lobby
             if (RoomName.Equals("Lobby"))
             {
                 // unloads old scene, moves everything back to lobby
-                SceneManager.SetActiveScene(SceneManager.GetSceneByName(RoomName));
+                //SceneManager.SetActiveScene(SceneManager.GetSceneByName(RoomName));       // CANNOT DO
+
                 SceneManager.MoveGameObjectToScene(other.gameObject, SceneManager.GetSceneByName(RoomName));
                 AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(pastScene);
                 while (!asyncUnload.isDone)
                 {
                     yield return null;
                 }
-                SetSceneObjects(SceneManager.GetActiveScene(), true);
+                other.GetComponent<PlayerData>().SetCurrentRoom(RoomName); 
+                Scene current = SceneManager.GetSceneByName(other.GetComponent<PlayerData>().GetCurrentRoom()); 
+                SetSceneObjects(current, true); 
             }
             // for client going from new room to new room
             else
@@ -92,7 +99,8 @@ public class EnteredTheScene : NetworkBehaviour
                     }
                 }
                 // moves everything over to new scene/unloads old scene 
-                SceneManager.SetActiveScene(SceneManager.GetSceneByName(RoomName));
+                //SceneManager.SetActiveScene(SceneManager.GetSceneByName(RoomName));
+                other.GetComponent<PlayerData>().SetCurrentRoom(RoomName);
                 SceneManager.MoveGameObjectToScene(other.gameObject, SceneManager.GetSceneByName(RoomName));
                 AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(pastScene);
                 while (!asyncUnload.isDone)
@@ -115,10 +123,11 @@ public class EnteredTheScene : NetworkBehaviour
                     yield return null;
                 }
             }
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(RoomName));
+            //SceneManager.SetActiveScene(SceneManager.GetSceneByName(RoomName));
+            other.GetComponent<PlayerData>().SetCurrentRoom(RoomName);
             SceneManager.MoveGameObjectToScene(other.gameObject, SceneManager.GetSceneByName(RoomName));
 
-            SetSceneObjects(SceneManager.GetActiveScene(), true);
+            //SetSceneObjects(SceneManager.GetActiveScene(), true);
             SetSceneObjects(pastScene, false);
         }
 

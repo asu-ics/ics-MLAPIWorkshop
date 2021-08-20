@@ -13,6 +13,16 @@ public class DoorEntered : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            ushort temp = (ushort)NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.GetComponent<PlayerData>().GetClientID();
+            if (temp == other.GetComponent<PlayerData>().ClientID.Value)
+            {
+                NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.GetComponent<EnteredTheScene>().GoToNewScene(other, RoomName);
+            }
+        }
+    }
+}
+
+    /*
             // only if client that goes through door is host
             if (other.GetComponent<PlayerData>().GetIsHost())
             {
@@ -32,4 +42,4 @@ public class DoorEntered : MonoBehaviour
             }
         }
     }
-}
+    */
